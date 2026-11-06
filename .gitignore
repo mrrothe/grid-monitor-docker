@@ -1,0 +1,3 @@
+config/*.json
+config/octopus_history
+config/logs

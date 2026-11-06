@@ -1,0 +1,24 @@
+services:
+  grid-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: grid-monitor
+    restart: unless-stopped
+    user: "1000:1000"
+    ports:
+      - "8412:8412"
+    environment:
+      - TZ=Europe/London
+      - PORT=8412
+    volumes:
+      - ./config:/data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
